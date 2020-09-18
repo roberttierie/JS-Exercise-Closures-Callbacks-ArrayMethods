@@ -27,7 +27,7 @@ function processFirstItem(stringList, callback) {
  * Study the code for counter1 and counter2. Answer the questions below.
  * 
  * 1. What is the difference between counter1 and counter2?
- * 
+ * Counter1 is  not defined - there is nothing to return as their is no parameter. 
  * 2. Which of the two uses a closure? How can you tell?
  * 
  * 3. In what scenario would the counter1 code be preferable? In what scenario would counter2 be better? 
@@ -56,10 +56,8 @@ function counter2() {
 
 Write a function called `inning` that generates a random number of points that a team scored in an inning. This should be a whole number between 0 and 2. */
 
-function inning(/*Code Here*/){
-
-    /*Code Here*/
-
+function inning(){
+  return ((Math.floor(Math.random()*3)))
 }
 
 /* Task 3: finalScore()
@@ -75,16 +73,30 @@ finalScore(inning, 9) might return:
 }
 
 */ 
-
-function finalScore(/*code Here*/){
-
-  /*Code Here*/
-
+function inning(){
+  return ((Math.floor(Math.random()*3)))
 }
+
+function finalscore(inning, number) {
+  let teamone = 0;
+  let teamtwo = 0;
+  for (let i = 0; i < number; i++) { 
+    teamone = teamone + inning();
+    teamtwo = teamtwo + inning();  
+  }
+ return { 
+   Home: teamone,
+   Away: teamtwo }
+  }
+
+console.log(finalscore(inning, 9))
+   
+
+
 
 /* Task 4: 
 
-Create a function called `scoreboard` that accepts the following parameters: 
+Create a function called `scoreboard` that accepts the following parameters:  
 
 (1) Callback function `getInningScore`
 (2) Callback function `inning`
@@ -104,8 +116,47 @@ and returns the score at each pont in the game, like so:
 
 Final Score: awayTeam - homeTeam */
 
-function scoreboard(/* CODE HERE */) {
-  /* CODE HERE */
+
+function getInningScore(inningCB) {
+  return{
+    Home: inningCB(),
+    Away: inningCB()
+  }
+}
+function scoreboard(InningScoreCB, inningCB, inningsNum) {
+  const scorebyInning = [];
+
+  let homeScore = 0;
+  let awayScore = 0;
+
+  for (let i = 0; i < inningsNum; i++) {
+    const currentInning = inningScoreCB(inningCB);
+    homeScore = homeScore + currentInning.Home
+    awayScore = awayScore + currentInning.Away
+    scorebyInning.push(`inning ${i + 1}: Away: ${currentInning.Away} - home: ${currentInning.Home}`);
+  }
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+let getInningScore = finalscore() {
+  home = home+inning();
+  away = away+inning();
+  return `${home} - ${away}`;
+}
+
+console.log(`Inning ${inningNumber}: ${getInningScore()}`;
+
+scoreboard(getInningScore, 9); (
